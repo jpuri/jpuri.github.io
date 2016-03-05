@@ -1,21 +1,18 @@
 /*!
  * EasyBook Jekyll Theme Javascript
- * 
- * http://laobubu.github.io/jekyll-theme-EasyBook
- * https://github.com/laobubu/jekyll-theme-EasyBook
  *
  * This is just a extension for my theme.
  */
 
 function TOCize(toc, content, matchHeightTo) {
     if (!(toc && content && matchHeightTo)) return false
-    
+
     var cnt = 0;
-    
+
     var make = function(tag) {
         return document.createElement(tag)
     }
-    
+
     var aniscroll = {
         to: function(top) {
             aniscroll.target = top;
@@ -34,7 +31,7 @@ function TOCize(toc, content, matchHeightTo) {
             }
         }
     }
-    
+
     var generateLink = function(h) {
         var q = make('a');
         cnt++;
@@ -45,15 +42,15 @@ function TOCize(toc, content, matchHeightTo) {
         }
         q.textContent = h.textContent;
         q.setAttribute('href', '#' + hash );
-        q.addEventListener('click', 
-            function(e){ 
+        q.addEventListener('click',
+            function(e){
                 aniscroll.to(h.getBoundingClientRect().top + document.body.scrollTop);
                 e.preventDefault();
             }
             ,false);
         return q;
     };
-    
+
     var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
     var cul = null, plevel = 1;
     var uls = [make('ul')];
@@ -82,14 +79,14 @@ function TOCize(toc, content, matchHeightTo) {
         else
             break;
     }
-    
+
     if (!cnt) return false;
-    
+
     var scrolldummy=make('div');
     toc.appendChild(scrolldummy);
     toc.appendChild(uls[0]);
     toc.style.display = 'block';
-    
+
     var maxHeightTOC = '';
     var ppc = document.querySelector('.col-main');
     var s1 = function(){
@@ -123,54 +120,54 @@ function TOCize(toc, content, matchHeightTo) {
 
 function SelectAllize(selector,tips) {
     if (!window.getSelection) return null;
-    
+
     var obj = document.querySelectorAll(selector);
     var selection=window.getSelection();
     var z = document.createElement("div");
     z.className = "util-notify1";
     z.textContent = tips;
     document.body.appendChild(z)
-    
+
     function hide() {
         z.classList.add('hidden')
         z.style.top = '-200px'
     }
-    
+
     hide();
     z.addEventListener('mouseover', hide, false);
-    
+
     function clickHandler(e){
         if (!selection.isCollapsed) return;
-        
+
         var tt = e.pageY-z.offsetHeight - 15;
         z.setAttribute('style', 'left:' + (e.pageX-z.offsetWidth/2) + 'px;top:' + (tt+10) + 'px');
         z.classList.remove('hidden');
         setTimeout(hide, 1000);
     }
-    
+
     function dblClickHandler(e){
         selection.selectAllChildren(this);
         hide();
     }
-    
+
     for(var i = obj.length; i--;) {
         var oi = obj[i];
         oi.addEventListener('click', clickHandler, false);
         oi.addEventListener('dblclick', dblClickHandler, false);
     }
-    
+
     return true;
 }
 
 function RealLoad(){
     TOCize(
-        document.querySelector('.post-toc'), 
-        document.querySelector('.post-content'), 
+        document.querySelector('.post-toc'),
+        document.querySelector('.post-content'),
         document.querySelector('.col-main')
     );
-    
+
     SelectAllize("pre.highlight", "Dblclick to select all");
-    
+
     var imgs = document.querySelectorAll('.post-content > p > img');
     for(var i=imgs.length; i--;){
         if (imgs[i].parentElement.childNodes.length === 1) {
