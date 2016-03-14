@@ -3,7 +3,7 @@ layout: post
 title:  "AngularJS – Role based access on GUI"
 date:   2014-02-08 09:00:13
 categories: Frontend
-permalink: /archivers/hello
+permalink: archivers/angularjs–role-based-access-on-GUI
 ---
 
 These days we are busy in coding for frontend in our application and we are primarily using angular for that. A recent requirement was for role based access on GUI. A person can have multiple roles assigned to him and it was needed that a he should be able to access only that portions of GUI for which he is authorized.
