@@ -2,7 +2,7 @@
 layout: post
 title:  "History of programming languages."
 date:   2012-02-16 00:00
-categories: General
+categories: Programming Languages
 permalink: archivers/history-of-programming-languages
 ---
 Software development has a very rich history we rarely actually look into it. It’s very interesting and I should say very important to know the history of what we are doing and how and why it all came into being. What we have today with us is actually not the best, but there were many factors responsible for making it what it is.
